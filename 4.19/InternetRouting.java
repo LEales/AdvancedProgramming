@@ -1,11 +1,9 @@
-package ol;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
 /*
-Badly tested, might contain a bug or two;
+Badly tested, might contain a bug or two
 
 INSTRUCTIONS FOR HOW TO SUBMIT INPUT
 first line should contain two ints #Vertexes and #Edges
