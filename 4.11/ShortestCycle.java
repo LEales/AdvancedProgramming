@@ -1,5 +1,3 @@
-package ol;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -85,7 +83,6 @@ public class ShortestCycle {
     static int shortest(HashMap<Integer, LinkedList<Edge>> g) {
         int[][] mtx = new int[V][];
         for (int i = 0; i < V; i++) {
-
             mtx[i] = dijkstra(g, i);
         }
         int min = Integer.MAX_VALUE;
