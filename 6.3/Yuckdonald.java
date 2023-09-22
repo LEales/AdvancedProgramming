@@ -4,6 +4,22 @@ import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Yuckdonald {
+    /*
+    fist line should contain the integer k
+    the second line should contain the integers M1 M2 ... Mn separeted by a space
+    Example input 1:
+    2
+    1 5 3 1 9 6 7 8
+
+    Example input 2:
+    3
+    1 5 3 1 9 6 7 8
+
+    Example input 3:
+    7
+    1 5 3 1 9 6 7 8 10 12
+    
+     */
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int k = Integer.parseInt(br.readLine());
@@ -15,13 +31,9 @@ public class Yuckdonald {
     }
 
     static int solve(HashMap<Integer, Integer> memo, int i, int k, int[] m) {
-        if (memo.containsKey(i)) return memo.get(i);
         if (i >= m.length) return 0;
-        int max;
-        if (i + k >= m.length)
-            max = Math.max(m[i], solve(memo, i + 1, k, m));
-        else
-            max = Math.max(m[i] + solve(memo, i + k, k, m), solve(memo, i + 1, k, m));
+        if (memo.containsKey(i)) return memo.get(i);
+        int max = Math.max(m[i] + solve(memo, i + k, k, m), solve(memo, i + 1, k, m));
         memo.put(i, max);
         return max;
     }
