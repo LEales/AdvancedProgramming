@@ -13,7 +13,7 @@ public class Subsequence {
         int[] arr = new int[st.countTokens()];
         for (int i = 0; i < arr.length; i++) arr[i] = Integer.parseInt(st.nextToken());
         int[] dp = new int[arr.length];
-        int max = 0, maxI = 0;
+        int max = arr[0], maxI = 0;
         dp[0] = arr[0];
         for (int i = 1; i < arr.length; i++) {
             dp[i] = Math.max(dp[i - 1] + arr[i], arr[i]);
