@@ -22,12 +22,10 @@ public class Subsequence {
                 maxI = i;
             }
         }
-        LinkedList<Integer> out = new LinkedList<>();
-        while (dp[maxI] > 0) out.addFirst(arr[maxI--]);
-        System.out.println("Sum is " + max);
-        if (out.isEmpty()) System.out.println("Empty sequence is largest");
-        for (Integer i : out) {
-            System.out.print(i + " ");
-        }
+        int i = maxI;
+        while (i >= 0 && dp[i] > 0) i--;
+        System.out.println("Sum is " + Math.max(0, max));
+        if (i == maxI) System.out.println("Empty sequence is largest");
+        for (++i; i <= maxI; i++) System.out.print(arr[i] + " ");
     }
 }
