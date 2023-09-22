@@ -1,3 +1,5 @@
+package ol;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -16,14 +18,12 @@ public class Games {
         int i = Integer.parseInt(st.nextToken()), j = Integer.parseInt(st.nextToken()), n = Integer.parseInt(st.nextToken());
         HashMap<String, Fraction> memo = new HashMap<>();
         HashMap<String, Double> memo2 = new HashMap<>();
-        double result = solveDecimal(memo2, n-i, n-j);
+        double result = solveDecimal(memo2, n - i, n - j);
         System.out.println((result < 0) ? 0 : result);
-        Fraction total = Games.solveFraction(memo, n - i, n - j);
-        long win = total.n;
-        long games = total.d;
-        System.out.println(win);
+        Fraction total = solveFraction(memo, n - i, n - j);
+        System.out.println(total.n);
         System.out.println("_____");
-        System.out.println(games);
+        System.out.println(total.d);
     }
 
     static double solveDecimal(HashMap<String, Double> memo, int i, int j) {
@@ -32,8 +32,8 @@ public class Games {
         if (i == j) return 0.5;
         String key = i + " " + j;
         if (memo.containsKey(key)) return memo.get(key);
-        double win = solveDecimal(memo, i-1, j);
-        double lose = solveDecimal(memo, i, j-1);
+        double win = solveDecimal(memo, i - 1, j);
+        double lose = solveDecimal(memo, i, j - 1);
         double result = (win + lose) / 2;
         memo.put(key, result);
         return result;
@@ -56,6 +56,7 @@ public class Games {
         memo.put(key, result);
         return result;
     }
+
     static Fraction add(Fraction a, Fraction b) {
         long ad = a.d, bd = b.d;
         long an = a.n, bn = b.n;
@@ -70,8 +71,8 @@ public class Games {
                 System.out.println("overflow");
                 System.exit(0);
             }
-            ad*=2;
-            an*=2;
+            ad *= 2;
+            an *= 2;
         }
         while (ad > bd) {
             if (bd <= 0 || ad <= 0) {
