@@ -7,11 +7,8 @@ public class ShuffleTest {
     static int n, m;
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        x = br.readLine();
-        y = br.readLine();
-        z = br.readLine();
-        n = x.length();
-        m = y.length();
+        x = br.readLine(); y = br.readLine(); z = br.readLine();
+        n = x.length(); m = y.length();
         HashMap<String, Boolean> memo = new HashMap<>();
         System.out.println(solve(memo, 0, 0));
     }
