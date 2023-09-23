@@ -1,5 +1,3 @@
-package ol;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -41,14 +39,9 @@ public class FakeCoinA {
 
     static int compare(int[] pile, int fl, int fr, int sl, int sr) {
         //pretend this method is O(1) as stated in the problem
-        int lSum = 0;
-        int rSum = 0;
-        for (int i = fl; i < fr; i++) {
-            lSum += pile[i];
-        }
-        for (int i = sl; i < sr; i++) {
-            rSum += pile[i];
-        }
+        int lSum = 0, rSum = 0;
+        for (int i = fl; i < fr; i++) lSum += pile[i];
+        for (int i = sl; i < sr; i++) rSum += pile[i];
         return Integer.compare(lSum, rSum);
     }
 }
