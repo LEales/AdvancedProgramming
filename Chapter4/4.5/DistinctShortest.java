@@ -37,6 +37,20 @@ Example Input 2:
 5 7
 0 8
 
+Example Input 3:
+8 10
+0 1
+0 2
+2 3
+3 4
+1 3
+4 6
+5 6
+6 2
+6 7
+5 0
+0 4
+
  */
 public class DistinctShortest {
     public static void main(String[] args) throws Exception {
@@ -57,11 +71,9 @@ public class DistinctShortest {
         System.out.println(answer[0] + " paths found with a distance of " + ((answer[1] == Integer.MAX_VALUE) ? "UNAVAILABLE" : answer[1]));
     }
 
-
     static int[] bfsModified(HashMap<Integer, LinkedList<Integer>> g, int s, int d) {
         if (s == d) return new int[]{1,0};
         int V = g.size();
-        int paths = 0;
         int[] dist = new int[V];
         Arrays.fill(dist, Integer.MAX_VALUE);
         Queue<Integer> q = new LinkedList<>();
@@ -70,16 +82,22 @@ public class DistinctShortest {
         while (!q.isEmpty()) {
             int v = q.poll();
             for (Integer u : g.get(v)) {
-                if (u == d) {
+                if (u == d) dist[u] = dist[v] + 1;
+                else if (dist[u] == Integer.MAX_VALUE) {
                     dist[u] = dist[v] + 1;
-                    paths++;
-                } else if (dist[u] == Integer.MAX_VALUE) {
-                    dist[u] = dist[v] + 1;
-                    if (dist[u] >= dist[d]) return new int[]{paths, dist[d]};
+                    if (dist[u] >= dist[d]) return new int[]{count(g, dist, s, d), dist[d]};
                     q.add(u);
                 }
             }
         }
-        return new int[]{paths,dist[d]};
+        return new int[]{count(g, dist, s, d), dist[d]};
+    }
+
+    static int count(HashMap<Integer, LinkedList<Integer>> g, int[] dist, int s, int c) {
+        if (c == s) return 1;
+        int out = 0;
+        for (int i : g.get(c))
+            if (dist[i] == dist[c] -1) out += count(g, dist, s, i);
+        return out;
     }
 }
