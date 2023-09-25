@@ -54,7 +54,6 @@ Example Input 3:
 
  */
 public class DistinctShortest {
-    
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -70,35 +69,30 @@ public class DistinctShortest {
         st = new StringTokenizer(br.readLine());
         int s = Integer.parseInt(st.nextToken()), d = Integer.parseInt(st.nextToken());
         int[] answer = bfsModified(g, s, d);
-        System.out.println(answer[0] + " paths found with a distance of " + ((answer[1] == Integer.MAX_VALUE) ? "UNAVAILABLE" : answer[1]));
+        System.out.println(answer[0] + " paths found with a distance of " + ((answer[1] == -1) ? "UNAVAILABLE" : answer[1]));
     }
 
     static int[] bfsModified(HashMap<Integer, LinkedList<Integer>> g, int s, int d) {
         if (s == d) return new int[]{1, 0};
         int V = g.size();
         int[] dist = new int[V];
+        int[] count = new int[V];
         Arrays.fill(dist, Integer.MAX_VALUE);
         Queue<Integer> q = new LinkedList<>();
         dist[s] = 0;
+        count[s] = 1;
         q.add(s);
         while (!q.isEmpty()) {
             int v = q.poll();
-            if (dist[v] >= dist[d]) return new int[]{count(g, dist, s, d), dist[d]};
-            for (Integer u : g.get(v)) {
+            if (dist[v] == dist[d]) return new int[]{count[d], dist[d]};
+            for (int u : g.get(v)) {
                 if (dist[u] == Integer.MAX_VALUE) {
                     dist[u] = dist[v] + 1;
+                    count[u] = count[v];
                     q.add(u);
-                }
+                } else if (dist[u] == dist[v] + 1) count[u] += count[v];
             }
         }
-        return new int[]{count(g, dist, s, d), dist[d]};
-    }
-
-    static int count(HashMap<Integer, LinkedList<Integer>> g, int[] dist, int s, int v) {
-        if (v == s) return 1;
-        int out = 0;
-        for (int u : g.get(v))
-            if (dist[u] == dist[v] - 1) out += count(g, dist, s, u);
-        return out;
+        return new int[]{0, -1};
     }
 }
