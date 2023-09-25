@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
+
 /*
 INSTRUCTIONS FOR HOW TO SUBMIT INPUT
 first line should contain two ints #Vertexes and #Edges
@@ -53,6 +54,7 @@ Example Input 3:
 
  */
 public class DistinctShortest {
+    
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -72,7 +74,7 @@ public class DistinctShortest {
     }
 
     static int[] bfsModified(HashMap<Integer, LinkedList<Integer>> g, int s, int d) {
-        if (s == d) return new int[]{1,0};
+        if (s == d) return new int[]{1, 0};
         int V = g.size();
         int[] dist = new int[V];
         Arrays.fill(dist, Integer.MAX_VALUE);
@@ -81,11 +83,10 @@ public class DistinctShortest {
         q.add(s);
         while (!q.isEmpty()) {
             int v = q.poll();
+            if (dist[v] >= dist[d]) return new int[]{count(g, dist, s, d), dist[d]};
             for (Integer u : g.get(v)) {
-                if (u == d) dist[u] = dist[v] + 1;
-                else if (dist[u] == Integer.MAX_VALUE) {
+                if (dist[u] == Integer.MAX_VALUE) {
                     dist[u] = dist[v] + 1;
-                    if (dist[u] >= dist[d]) return new int[]{count(g, dist, s, d), dist[d]};
                     q.add(u);
                 }
             }
@@ -93,11 +94,11 @@ public class DistinctShortest {
         return new int[]{count(g, dist, s, d), dist[d]};
     }
 
-    static int count(HashMap<Integer, LinkedList<Integer>> g, int[] dist, int s, int c) {
-        if (c == s) return 1;
+    static int count(HashMap<Integer, LinkedList<Integer>> g, int[] dist, int s, int v) {
+        if (v == s) return 1;
         int out = 0;
-        for (int i : g.get(c))
-            if (dist[i] == dist[c] -1) out += count(g, dist, s, i);
+        for (int u : g.get(v))
+            if (dist[u] == dist[v] - 1) out += count(g, dist, s, u);
         return out;
     }
 }
