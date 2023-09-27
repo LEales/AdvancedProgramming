@@ -22,8 +22,8 @@ public class ShuffleTest {
         String key = xi + " " + yi;
         if (memo.containsKey(key)) return memo.get(key);
         if (xi == n) {
-            for (int i = yi + xi; i < m; i++) {
-                if (y.charAt(i) != z.charAt(i)) {
+            for (int i = yi + xi; i < z.length(); i++) {
+                if (y.charAt(yi++) != z.charAt(i)) {
                     memo.put(key, false);
                     return false;
                 }
@@ -31,8 +31,8 @@ public class ShuffleTest {
             return true;
         }
         if (yi == m) {
-            for (int i = yi + xi; i < n; i++) {
-                if (x.charAt(i) != z.charAt(i)) {
+            for (int i = yi + xi; i < z.length(); i++) {
+                if (x.charAt(xi++) != z.charAt(i)) {
                     memo.put(key, false);
                     return false;
                 }
