@@ -1,13 +1,18 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+
 //timelimit
 //problem 1129
 public class Stargate {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder out = new StringBuilder();
-        int[] p = new int[1], s = new int[1];
+        int[] p = new int[6000000], s = new int[6000000];
+        for (int i = 0; i < 6000000; i++) {
+            p[i] = i;
+            s[i] = 1;
+        }
         boolean def = false;
         String in;
         int t = 0;
@@ -16,17 +21,12 @@ public class Stargate {
             char cmd = st.nextToken().charAt(0);
             if (cmd == 'd' || cmd == 'D') {
                 def = true;
-                t = Integer.parseInt(st.nextToken());
-                if (t == 0) {
-                    def = false;
-                    continue;
-                }
-                p = new int[t];
-                s = new int[t];
                 for (int i = 0; i < t; i++) {
                     p[i] = i;
                     s[i] = 1;
                 }
+                t = Integer.parseInt(st.nextToken());
+                if (t == 0) def = false;
             } else if ((cmd == 'c' || cmd == 'C') && def) {
                 int tokens = st.countTokens();
                 if (tokens == 2) {
@@ -38,7 +38,8 @@ public class Stargate {
                     int v = Integer.parseInt(st.nextToken()) - 1;
                     int c = Integer.parseInt(st.nextToken());
                     for (int i = v; i < v + c; i++) {
-                        if (isValid(u, i, t)) union(u, i, p, s);
+                        if (!isValid(u, i, t)) break;
+                        union(u, i, p, s);
                     }
                 } else if (tokens == 4) {
                     int u = Integer.parseInt(st.nextToken()) - 1;
@@ -46,7 +47,8 @@ public class Stargate {
                     int c = Integer.parseInt(st.nextToken());
                     int step = Integer.parseInt(st.nextToken());
                     for (int i = v; i < v + c; i += step) {
-                        if (isValid(u, i, t)) union(u, i, p, s);
+                        if (!isValid(u, i, t)) break;
+                        union(u, i, p, s);
                     }
                 } else {
                     int u = Integer.parseInt(st.nextToken()) - 1;
@@ -55,7 +57,8 @@ public class Stargate {
                     int dststep = Integer.parseInt(st.nextToken());
                     int srcstep = Integer.parseInt(st.nextToken());
                     while (c-- > 0) {
-                        if (isValid(u, v, t)) union(u, v, p, s);
+                        if (!isValid(u, v, t)) break;
+                        union(u, v, p, s);
                         u += srcstep;
                         v += dststep;
                     }
