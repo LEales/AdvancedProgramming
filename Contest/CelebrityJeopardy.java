@@ -1,8 +1,6 @@
-package contest;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-
+//Problem 1124
 public class CelebrityJeopardy {
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
