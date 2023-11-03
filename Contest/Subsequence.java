@@ -18,12 +18,11 @@ public class Subsequence {
                 total += arr[last];
                 if (total >= S) break;
             }
-            last++;
             if (total < S) {
                 out.append(0).append('\n');
                 continue;
             }
-            int min = last - first;
+            int min = ++last - first;
             while (last < N || total >= S) {
                 if (last == N || total >= S) total -= arr[first++];
                 else total += arr[last++];
