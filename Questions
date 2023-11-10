@@ -1,0 +1,44 @@
+1.
+Given n unsorted real numbers a0,....,an-1 and a real number b. Design an algorithm that determines if there are two
+numbers ai and aj (i != j) such that ai + aj = b. Your algorithm should run in O(n lg n) time.
+
+2.
+You are organizing a triathlon exercise where each contestant must swim 20 laps of a pool, bike 10km and finally run
+5km, in this order. The pool is quite narrow so it will only allow one person to swim at a time. Biking and running can
+be done in parallel on the other hand. Your plan is to send out the contestants in staggered fashion, i.e, on person
+swims 20 laps, gets out and starts biking, and as soon as the first person is out pof the pool, the second one starts
+swimming. As soon as s/he is out, the third  one begins swimming and so on.
+
+Each contestant has a projected swimming time(the expected time to finish swimming the 20 laps), a projected biking
+time, and a projected running time. You want to decide on a schedule for the triathlon (an order in which to release the
+contestants) in such a way that the whole competition is over as early as possible, assuming each contestant spends
+exactly the projected time on each task.
+
+Give an algorithm that given the contestants and their projected times for each task produces a schedule that finishes
+as early as possible.
+
+3.
+Given two sequences, S = s1, s2, ..., sn of integers (both positive and negative) and W = w1, w2,...,wn, all positive
+rational values, the longest weighted increasing subsequence asks for the maximum weight subsequence of increasing
+values from S. The solution can be specified as L(n) = max 1 <= k <= n M(k), when M(j) is given recursively follows:
+M(j) = W1 if (j==1), max 1<=i<=j-1 {wj, M(i) + Iij} if j >= 2
+where Iij = Wj if (Si < Sj), Iij = negative infinity otherwise.
+
+4.
+Let G = (V, E) be an undirected connected graph with and edge weight function w(e), where e ∈ E. We assume all edge
+weights are distinct. Let S be the set of all possible spanning trees of G and assume that |S| >= 2 i.e, there is more
+than one spanning tree (the graph is not itself a tree). For any spanning tree T, we let w(T) = ∑e∈T w(e) and let T1 be
+the minimum spanning tree of G, i.e, w(T1) = min T∈S{W(T)}, our standard definition of MST. Define the second best
+spanning tree T2 to be a spanning tree such that w(T2) = minT∈S\{T1} {w(T)}.
+
+Give an efficient algorithm to compute the second best spanning tree of a graph G. Your algorithm should take
+O(|V| * |E|) time.
+
+5. The subset sum problem is the following problem.
+    Input: a set of n positive integers A = a1,a2,...,an and an integer s.
+    Output: true, if there is a subset D ⊆ A such that ∑a∈D a = s, false otherwise.
+
+Show that subset sum is NP-hard. You can use that the following problem Partition is NP-Hard.
+    Input: a set of n positive integers, A = a1, a2,...,an.
+    Output: true, if the set A can be partitioned into two subsets B and C such that B ⊆ A, C = A\B, and
+    ∑a∈B a = ∑a∈C a, false otherwise.
