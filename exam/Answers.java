@@ -1,15 +1,8 @@
-package ol.exam;
-
 import java.util.Arrays;
 
 public class Answers {
-
-    public static void main(String[] args) {
-        int[] S = new int[]{5, 2, 8, 6, 3, 6, 9, 7};
-        float[] W = new float[]{1, 2, 3, 1, 2, 3, 2, 1};
-        System.out.println(question3(S, W, 8));
-    }
-
+    //You were allowed to use well known algorithms without implementing them.
+  
     static boolean question1(float[] arr, float b) {
         Arrays.sort(arr);
         int L = 0, R = arr.length - 1;
