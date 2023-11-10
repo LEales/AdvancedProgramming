@@ -34,7 +34,8 @@ spanning tree T2 to be a spanning tree such that w(T2) = minT∈S\{T1} {w(T)}.
 Give an efficient algorithm to compute the second best spanning tree of a graph G. Your algorithm should take
 O(|V| * |E|) time.
 
-5. The subset sum problem is the following problem.
+5. 
+The subset sum problem is the following problem.
     Input: a set of n positive integers A = a1,a2,...,an and an integer s.
     Output: true, if there is a subset D ⊆ A such that ∑a∈D a = s, false otherwise.
 
